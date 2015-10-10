@@ -10,7 +10,7 @@
 #import "EYTabbedHeaderItem.h"
 
 //默认选择头部视图占高度比例
-#define DEFAULT_TITLE_HEIGHT 1.0/8
+#define DEFAULT_TITLE_HEIGHT_RATE 1.0/8
 
 @interface EYTabbedView()
 {
@@ -40,8 +40,8 @@
     self = [super initWithFrame:frame];
     if(self)
     {
-        _headerView = [[EYTabbedHeaderView alloc] initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height * DEFAULT_TITLE_HEIGHT)];
-        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(frame.origin.x, frame.origin.y + _headerView.frame.size.height, frame.size.width, frame.size.height * (1 - DEFAULT_TITLE_HEIGHT))];
+        _headerView = [[EYTabbedHeaderView alloc] initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height * DEFAULT_TITLE_HEIGHT_RATE)];
+        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(frame.origin.x, frame.origin.y + _headerView.frame.size.height, frame.size.width, frame.size.height * (1 - DEFAULT_TITLE_HEIGHT_RATE))];
         _scrollView.pagingEnabled = YES;
         _scrollView.showsHorizontalScrollIndicator = NO;
         _scrollView.backgroundColor = [UIColor whiteColor];
@@ -241,7 +241,7 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     CGFloat positionX = scrollView.contentOffset.x;
-    NSUInteger index = positionX / [[UIScreen mainScreen] bounds].size.width;
+    NSUInteger index = positionX / self.frame.size.width;
     [_headerView setSelectedItem:[_tabbedItems objectAtIndex:index]];
 }
 

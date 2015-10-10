@@ -20,7 +20,7 @@ static NSString *identifier = @"cell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    EYTabbedView *titleView = [[EYTabbedView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, [UIScreen mainScreen].bounds.size.height)];
+    EYTabbedView *titleView = [[EYTabbedView alloc] initWithFrame:CGRectMake(50,50, [[UIScreen mainScreen] bounds].size.width/2, [UIScreen mainScreen].bounds.size.height/2)];
     [self.view addSubview:titleView];
     
     UITableView *tableView1 = [[UITableView alloc] init];
