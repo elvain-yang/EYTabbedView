@@ -10,7 +10,7 @@
 #import "EYTabbedHeaderItem.h"
 
 //默认选择头部视图占高度比例
-#define DEFAULT_TITLE_HEIGHT 1.0/8
+#define DEFAULT_TITLE_HEIGHT_RATE 1.0/8
 
 @interface EYTabbedView()
 {
@@ -40,8 +40,8 @@
     self = [super initWithFrame:frame];
     if(self)
     {
-        _headerView = [[EYTabbedHeaderView alloc] initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height * DEFAULT_TITLE_HEIGHT)];
-        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(frame.origin.x, frame.origin.y + _headerView.frame.size.height, frame.size.width, frame.size.height * (1 - DEFAULT_TITLE_HEIGHT))];
+        _headerView = [[EYTabbedHeaderView alloc] initWithFrame:CGRectMake(0,0, frame.size.width, frame.size.height * DEFAULT_TITLE_HEIGHT_RATE)];
+        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0,_headerView.frame.size.height, frame.size.width, frame.size.height * (1 - DEFAULT_TITLE_HEIGHT_RATE))];
         _scrollView.pagingEnabled = YES;
         _scrollView.showsHorizontalScrollIndicator = NO;
         _scrollView.backgroundColor = [UIColor whiteColor];
@@ -91,7 +91,6 @@
     {
         _headerViewLineSelectedColor = [_delegate colorOfSelectedLine:self];
     }
-
     if(_dataSource)
     {
         [self initTabbedItemWidth];
@@ -128,7 +127,7 @@
     for(int i = 0 ; i < _tableViewsCount ; i++)
     {
         UIView *view = [_dataSource tabbedView:self viewForIndex:i];
-        view.frame = CGRectMake(_scrollView.frame.origin.x + _scrollView.frame.size.width * i, 0, _scrollView.frame.size.width, _scrollView.frame.size.height);
+        view.frame = CGRectMake(_scrollView.frame.size.width * i, 0, _scrollView.frame.size.width, _scrollView.frame.size.height);
         [_tabbedTableViews addObject:[_dataSource tabbedView:self viewForIndex:i]];
         [_scrollView addSubview:view];
     }
@@ -167,8 +166,8 @@
     }
     else
     {
-        _headerView.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, self.frame.size.height * percent);
-        _scrollView.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y + _headerView.frame.size.height, self.frame.size.width, self.frame.size.height * (1 - percent));
+        _headerView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height * percent);
+        _scrollView.frame = CGRectMake(0, _headerView.frame.size.height, self.frame.size.width, self.frame.size.height * (1 - percent));
     }
 }
 
@@ -241,7 +240,7 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     CGFloat positionX = scrollView.contentOffset.x;
-    NSUInteger index = positionX / [[UIScreen mainScreen] bounds].size.width;
+    NSUInteger index = positionX / self.frame.size.width;
     [_headerView setSelectedItem:[_tabbedItems objectAtIndex:index]];
 }
 

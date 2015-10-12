@@ -20,8 +20,8 @@ static NSString *identifier = @"cell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    EYTabbedView *titleView = [[EYTabbedView alloc] initWithFrame:CGRectMake(50,50, [[UIScreen mainScreen] bounds].size.width/2, [UIScreen mainScreen].bounds.size.height/2)];
-    [self.view addSubview:titleView];
+    EYTabbedView *tabbedView = [[EYTabbedView alloc] initWithFrame:CGRectMake([[UIScreen mainScreen] bounds].size.width/4, [UIScreen mainScreen].bounds.size.height/4, [[UIScreen mainScreen] bounds].size.width/2, [UIScreen mainScreen].bounds.size.height/2)];
+    [self.view addSubview:tabbedView];
     
     UITableView *tableView1 = [[UITableView alloc] init];
     tableView1.delegate = self;
@@ -53,8 +53,8 @@ static NSString *identifier = @"cell";
     
     _tableViews = @[tableView1,tableView2,tableView3,tableView4,tableView5,tableView6,tableView7];
     
-    titleView.delegate = self;
-    titleView.dataSource = self;
+    tabbedView.delegate = self;
+    tabbedView.dataSource = self;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

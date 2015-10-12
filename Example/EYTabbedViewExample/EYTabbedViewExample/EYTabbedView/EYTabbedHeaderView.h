@@ -1,5 +1,5 @@
 //
-//  SYTabbedTitleView.h
+//  EYTabbedHeaderViewView.h
 //  EYTabbedViewExample
 //
 //  Created by evlain_yang on 15/9/28.

@@ -30,11 +30,11 @@
 }
 
 
--(void)setOwnerTabbedHeaderView:(EYTabbedHeaderView *)titleView andItemPosition:(CGFloat)position
+-(void)setOwnerTabbedHeaderView:(EYTabbedHeaderView *)headerView andItemPosition:(CGFloat)position
 {
-    _headerView = titleView;
-    self.frame = CGRectMake(position, 0, _width, titleView.frame.size.height);
-    _btn.frame = CGRectMake(0, 0, _width, titleView.frame.size.height);
+    _headerView = headerView;
+    self.frame = CGRectMake(position, 0, _width, headerView.frame.size.height);
+    _btn.frame = CGRectMake(0, 0, _width, headerView.frame.size.height);
     [_btn addTarget:self action:@selector(btnClick) forControlEvents:UIControlEventTouchUpInside];
 }
 
