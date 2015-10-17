@@ -10,7 +10,13 @@
 #import "EYTabbedHeaderItem.h"
 @interface ViewController ()
 {
-    NSArray *_tableViews;
+    UITableView *_tableView1;
+    UIView *_view2;
+    UITableView *_tableView3;
+    UITableView *_tableView4;
+    UITableView *_tableView5;
+    UITableView *_tableView6;
+    UITableView *_tableView7;
 }
 @end
 
@@ -20,38 +26,8 @@ static NSString *identifier = @"cell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    EYTabbedView *tabbedView = [[EYTabbedView alloc] initWithFrame:CGRectMake([[UIScreen mainScreen] bounds].size.width/4, [UIScreen mainScreen].bounds.size.height/4, [[UIScreen mainScreen] bounds].size.width/2, [UIScreen mainScreen].bounds.size.height/2)];
+    EYTabbedView *tabbedView = [[EYTabbedView alloc] initWithFrame:CGRectMake(0,0, [[UIScreen mainScreen] bounds].size.width, [UIScreen mainScreen].bounds.size.height)];
     [self.view addSubview:tabbedView];
-    
-    UITableView *tableView1 = [[UITableView alloc] init];
-    tableView1.delegate = self;
-    tableView1.dataSource = self;
-    
-    UITableView *tableView2 = [[UITableView alloc] init];
-    tableView2.delegate = self;
-    tableView2.dataSource = self;
-    
-    UITableView *tableView3 = [[UITableView alloc] init];
-    tableView3.delegate = self;
-    tableView3.dataSource = self;
-    
-    UITableView *tableView4 = [[UITableView alloc] init];
-    tableView4.delegate = self;
-    tableView4.dataSource = self;
-    
-    UITableView *tableView5 = [[UITableView alloc] init];
-    tableView5.delegate = self;
-    tableView5.dataSource = self;
-    
-    UITableView *tableView6 = [[UITableView alloc] init];
-    tableView6.delegate = self;
-    tableView6.dataSource = self;
-    
-    UITableView *tableView7 = [[UITableView alloc] init];
-    tableView7.delegate = self;
-    tableView7.dataSource = self;
-    
-    _tableViews = @[tableView1,tableView2,tableView3,tableView4,tableView5,tableView6,tableView7];
     
     tabbedView.delegate = self;
     tabbedView.dataSource = self;
@@ -75,20 +51,18 @@ static NSString *identifier = @"cell";
 
 -(NSString *)cellTitleForTableView:(UITableView *)tableView
 {
-    if([tableView isEqual:[_tableViews objectAtIndex:0]])
+    if([tableView isEqual:_tableView1])
         return @"table1";
-    if([tableView isEqual:[_tableViews objectAtIndex:1]])
+    if([tableView isEqual:_tableView3])
         return @"table2";
-    if([tableView isEqual:[_tableViews objectAtIndex:2]])
+    if([tableView isEqual:_tableView4])
         return @"table3";
-    if([tableView isEqual:[_tableViews objectAtIndex:3]])
+    if([tableView isEqual:_tableView5])
         return @"table4";
-    if([tableView isEqual:[_tableViews objectAtIndex:4]])
+    if([tableView isEqual:_tableView6])
         return @"table5";
-    if([tableView isEqual:[_tableViews objectAtIndex:5]])
+    if([tableView isEqual:_tableView7])
         return @"table6";
-    if([tableView isEqual:[_tableViews objectAtIndex:6]])
-        return @"table7";
     return nil;
 }
 
@@ -144,7 +118,58 @@ static NSString *identifier = @"cell";
 
 -(UIView *)tabbedView:(EYTabbedView *)tabbedView viewForIndex:(NSUInteger)index
 {
-    return [_tableViews objectAtIndex:index];
+    switch (index) {
+        case 0:
+        {
+            _tableView1 = [[UITableView alloc] init];
+            _tableView1.delegate = self;
+            _tableView1.dataSource = self;
+            return _tableView1;
+        }
+        case 1:
+        {
+            _view2 = [[UIView alloc] init];
+            _view2.backgroundColor = [UIColor blueColor];
+            return _view2;
+        }
+        case 2:
+        {
+            _tableView3 = [[UITableView alloc] init];
+            _tableView3.delegate = self;
+            _tableView3.dataSource = self;
+            return _tableView3;
+        }
+        case 3:
+        {
+            _tableView4 = [[UITableView alloc] init];
+            _tableView4.delegate = self;
+            _tableView4.dataSource = self;
+            return _tableView4;
+        }
+        case 4:
+        {
+            _tableView5 = [[UITableView alloc] init];
+            _tableView5.delegate = self;
+            _tableView5.dataSource = self;
+            return _tableView5;
+        }
+        case 5:
+        {
+            _tableView6 = [[UITableView alloc] init];
+            _tableView6.delegate = self;
+            _tableView6.dataSource = self;
+            return _tableView6;
+        }
+        case 6:
+        {
+            _tableView7 = [[UITableView alloc] init];
+            _tableView7.delegate = self;
+            _tableView7.dataSource = self;
+            return _tableView7;
+        }
+        default:
+            return nil;
+    }
 }
 
 -(NSArray *)titleOfTabbedItem
@@ -155,6 +180,11 @@ static NSString *identifier = @"cell";
 -(NSUInteger)numberOfViewsInTabbedView
 {
     return 7;
+}
+
+-(EYSelectedAniamedType)animatedTypeOfSelectedLine:(EYTabbedView *)tabbedView
+{
+    return EYSelectedAniamedTypeDefault;
 }
 
 - (void)didReceiveMemoryWarning {

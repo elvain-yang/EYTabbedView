@@ -11,46 +11,52 @@
 
 @class EYTabbedView;
 
+
 @protocol EYTabbedViewDelegate <NSObject>
 
 @required
-/*
+/**
  *  设置选择头部视图单元格宽度
  */
 -(CGFloat)tabbedView:(EYTabbedView *)tabbedView widthForItemAtIndex:(NSUInteger)index;
 
 @optional
 
-/*
+/**
  *  设置选择头部视图占的半分比，剩余的为内容视图高度
  */
 -(CGFloat)percentHeightOfHeaderInTabbedView;
 
-/*
+/**
  *  设置选择头部视图单元格字体颜色
  */
 -(UIColor *)colorOfTabbedViewItem:(EYTabbedView *)tabbedView;
 
-/*
+/**
  *  设置选择头部视图单元格字体选中颜色
  */
 -(UIColor *)colorOfTabbedViewSelectedItem:(EYTabbedView *)tabbedView;
 
-/*
+/**
  *  设置选择头部视图背景颜色
  */
 -(UIColor *)backgroundColorOfTabbedView:(EYTabbedView *)tabbedView;
 
-/*
+/**
  *  设置选择头部视图单元格字体
  */
 -(UIFont *)fontOfTabbedViewItem:(EYTabbedView *)tabbedView;
 
-/*
+/**
  *  设置选择头部视图选择线颜色
  */
 -(UIColor *)colorOfSelectedLine:(EYTabbedView *)tabbedView;
 
+/**
+ *  设置选择线动画
+ *
+ */
+-(EYSelectedAniamedType)animatedTypeOfSelectedLine:(EYTabbedView *)tabbedView;
 @end
 
 @protocol EYTabbedViewDataSource <NSObject>

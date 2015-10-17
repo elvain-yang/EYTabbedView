@@ -30,6 +30,8 @@
     UIColor *_headerViewLineSelectedColor;
     UIFont *_headerViewItemFont;
 
+    EYSelectedAniamedType _animatedType;
+    
 }
 @end
 
@@ -91,6 +93,10 @@
     {
         _headerViewLineSelectedColor = [_delegate colorOfSelectedLine:self];
     }
+    if([_delegate respondsToSelector:@selector(animatedTypeOfSelectedLine:)])
+    {
+        _animatedType = [_delegate animatedTypeOfSelectedLine:self];
+    }
     if(_dataSource)
     {
         [self initTabbedItemWidth];
@@ -128,7 +134,7 @@
     {
         UIView *view = [_dataSource tabbedView:self viewForIndex:i];
         view.frame = CGRectMake(_scrollView.frame.size.width * i, 0, _scrollView.frame.size.width, _scrollView.frame.size.height);
-        [_tabbedTableViews addObject:[_dataSource tabbedView:self viewForIndex:i]];
+        [_tabbedTableViews addObject:view];
         [_scrollView addSubview:view];
     }
 }
@@ -218,7 +224,12 @@
     return _headerViewLineSelectedColor;
 }
 
-#pragma mark SYTabbedTitleViewDataSource
+-(EYSelectedAniamedType)animatedTypeOfSelectedLine:(EYTabbedHeaderView *)headerView
+{
+    return _animatedType;
+}
+
+#pragma mark EYTabbedHeaderViewDataSource
 
 -(EYTabbedHeaderItem *)tabbedHeaderView:(EYTabbedHeaderView *)headerView itemAtIndex:(NSUInteger)index
 {

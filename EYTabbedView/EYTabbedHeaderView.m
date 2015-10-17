@@ -22,6 +22,7 @@
     
     UIView *_selectedLine;
     
+    EYSelectedAniamedType _animatedType;
 }
 
 @property(nonatomic, strong)NSMutableArray *itemsArray;
@@ -133,6 +134,10 @@
                 [_selectedLine setBackgroundColor:_selecetViewColor];
             }
         }
+        if([self.delegate respondsToSelector:@selector(animatedTypeOfSelectedLine:)])
+        {
+            _animatedType = [self.delegate animatedTypeOfSelectedLine:self];
+        }
     }
     if(_dataSource && _delegate && (_isRunDelegateMethods == NO || _isRunDataSourceMethods == NO))
     {
@@ -203,11 +208,22 @@
     }
     else
     {
-        [UIView animateWithDuration:0.3 delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:0.5 options:UIViewAnimationOptionCurveLinear animations:^{
-            _selectedLine.frame = CGRectMake([self coculateLineViewPosition:index], self.frame.size.height - LINE_HEIGHT, item.frame.size.width, LINE_HEIGHT);
-        } completion:^(BOOL finished) {
-            
-        }];
+        if(_animatedType == EYSelectedAniamedTypeSpring)
+        {
+            [UIView animateWithDuration:0.2 delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:0.5 options:UIViewAnimationOptionCurveLinear animations:^{
+                _selectedLine.frame = CGRectMake([self coculateLineViewPosition:index], self.frame.size.height - LINE_HEIGHT, item.frame.size.width, LINE_HEIGHT);
+            } completion:^(BOOL finished) {
+                
+            }];
+        }
+        else
+        {
+            [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+                _selectedLine.frame = CGRectMake([self coculateLineViewPosition:index], self.frame.size.height - LINE_HEIGHT, item.frame.size.width, LINE_HEIGHT);
+            } completion:^(BOOL finished){
+                
+            }];
+        }
     }
     [self.delegate tabbedHeaderView:self didSelectItemAtIndex:index];
 }

@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ *  选择线动画
+ */
+typedef NS_ENUM(NSInteger, EYSelectedAniamedType)
+{
+    EYSelectedAniamedTypeDefault,   //默认动画
+    EYSelectedAniamedTypeSpring     //弹簧动画
+};
+
 @class EYTabbedHeaderView;
 @class EYTabbedHeaderItem;
 @protocol EYTabbedHeaderViewDelegate <NSObject>
@@ -45,11 +54,16 @@
  */
 -(UIFont *)fontOfTabbedHeaderViewItem:(EYTabbedHeaderView *)headerView;
 
-/*
+/**
  *  选择线颜色
  */
 -(UIColor *)colorOfSelectedLine:(EYTabbedHeaderView *)headerView;
 
+/**
+ *  设置选择线动画
+ *
+ */
+-(EYSelectedAniamedType)animatedTypeOfSelectedLine:(EYTabbedHeaderView *)headerView;
 @end
 
 @protocol SYTabbedTitleViewDataSource <NSObject>
