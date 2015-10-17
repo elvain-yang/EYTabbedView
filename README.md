@@ -8,7 +8,7 @@
     2.样式类似搜狐新闻、网易新闻等客户端的标签页视图，可以随意自定义控件样式，动画等。
     3.框架暂时没有添加AutoLayout支持，所以需要使用frame创建。
 
-###框架特性
+###框架特性 PECULIARITY
     1.自定义框架样式，各个部件的颜色、位置包括动画等。
     2.采用类UITableView设计方式，使用delegate和dataSouece来定制控件。
     3.EYTabbedHeaderView也是可以拿出来单独使用的，用法代码中有详细注释
